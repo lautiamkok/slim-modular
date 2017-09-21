@@ -1,0 +1,22 @@
+{
+    "require": {
+        "slim/slim": "^3.8.1",
+        "monolog/monolog": "^1.23.0",
+        "league/container": "^2.4",
+        "illuminate/database": "^5.5",
+        "ramsey/uuid": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Monsoon\\": [
+                "core/default/",
+                "module/default/",
+                "module/local/"
+            ],
+            "YourCustomNamespace\\": [
+                "core/local/",
+                "module/local/"
+            ]
+        }
+    }
+}
