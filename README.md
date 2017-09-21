@@ -24,7 +24,7 @@ Then, access the app at http://localhost:8080/
 * [The League Container (Dependency Injection)](https://github.com/thephpleague/container) - A simple but powerful dependency injection container.
 * [ramsey/uuid](https://github.com/ramsey/uuid) - A PHP 5.4+ library for generating RFC 4122 version 1, 3, 4, and 5 universally unique identifiers (UUID).
 
-### Database packages
+### Database
 
 * [Doctrine DBAL](https://github.com/doctrine/dbal) - Powerful database abstraction layer with many features for database schema introspection, schema management and PDO abstraction.
 * [Eloquen](https://github.com/illuminate/database) - The Illuminate Database component is a full database toolkit for PHP, providing an expressive query builder, ActiveRecord style ORM, and schema builder.
