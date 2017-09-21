@@ -37,12 +37,15 @@ $container->delegate(
 $app = new \Slim\App($container);
 
 $app->get('/', function (Request $request, Response $response, $args) {
-    $data = [
-        "status" => 200,
-        "message" => "Hello world!"
-    ];
-    $response->getBody()->write(json_encode($data));
-    return $response->withHeader('Content-type', 'application/json');
+    $response->getBody()->write("Hello world!");
+
+    // Below are now handled by the middleware.
+    // $data = [
+    //     "status" => 200,
+    //     "message" => "Hello world!"
+    // ];
+    // $response->getBody()->write(json_encode($data));
+    // return $response->withHeader('Content-type', 'application/json');
 });
 
 // Register dependencies.

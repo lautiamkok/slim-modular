@@ -5,8 +5,9 @@ $app->add(function ($request, $response, $next) use ($container) {
     // Default status code.
     $status = 200;
 
-    // Catch errors.
+    // Catch errors and modify PSR7 body.
     try {
+        // Call next middleware.
         $response = $next($request, $response);
         $status = $response->getStatusCode();
 
@@ -20,6 +21,18 @@ $app->add(function ($request, $response, $next) use ($container) {
             // $handler = $container->get('notFoundHandler');
             // return $handler($request, $response);
         }
+
+        // Modify the PSR7 body from all routes.
+        // https://akrabat.com/filtering-the-psr-7-body-in-middleware/
+        if ($status === 200) {
+            $content = $response->getBody();
+            $data = [
+                "status" => $status,
+                "data" => json_decode($content, true)
+            ];
+            $response->getBody()->rewind();
+            $response->getBody()->write(json_encode($data));
+        }
     } catch (\Exception $error) {
         $status = $error->getCode();
         $data = [
@@ -28,7 +41,6 @@ $app->add(function ($request, $response, $next) use ($container) {
         ];
         $response->getBody()->write(json_encode($data));
     };
-
     return $response
         ->withStatus($status)
         ->withHeader('Content-type', 'application/json');
