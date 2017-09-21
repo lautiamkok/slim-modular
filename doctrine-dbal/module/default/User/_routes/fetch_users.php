@@ -5,9 +5,6 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->get('/users', function (Request $request, Response $response, $args) {
 
-    // Default status code.
-    $status = 200;
-
     // If you want to access the Slim settings again.
     // $settings = $this->get("settings");
 
@@ -16,8 +13,8 @@ $app->get('/users', function (Request $request, Response $response, $args) {
 
     // Foo.
     $foo = $this->get('Monsoon\Core\Foo');
-    var_dump($foo->getWidth());
-    var_dump($foo->getHeight());
+    // var_dump($foo->getWidth());
+    // var_dump($foo->getHeight());
 
     // Autowiring the controller.
     $controller = $this->get('Monsoon\User\Controller\FetchController');
@@ -34,14 +31,18 @@ $app->get('/users', function (Request $request, Response $response, $args) {
         $newUsers[] = $user;
     }
 
-    // Output data.
-    $data = [
-        "status" => $status,
-        "data" => $newUsers
-    ];
+    $response->getBody()->write(json_encode($newUsers));
+    // Or:
+    // return $response->withJson($newUsers);
 
-    $response->getBody()->write(json_encode($data));
-    return $response->withStatus($status);
+    // Below are now handled by the middleware.
+    // $data = [
+    //     "status" => $status,
+    //     "data" => $newUsers
+    // ];
+
+    // $response->getBody()->write(json_encode($data));
+    // return $response->withStatus($status);
 
     // Catch errors in middleware instead so no repetitive catch in all routes.
     // Default status code.

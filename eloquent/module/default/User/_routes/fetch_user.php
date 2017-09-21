@@ -7,9 +7,6 @@ $app->get('/users/{name}', function (Request $request, Response $response, $args
     // Autowiring the controller.
     $controller = $this->get('Monsoon\User\Controller\FetchController');
 
-    // Default status code.
-    $status = 200;
-
     // Obtain result.
     $user = $controller->fetchUser($request, $args);
 
@@ -18,11 +15,5 @@ $app->get('/users/{name}', function (Request $request, Response $response, $args
     $user['createdOn'] = $timestamp->convert($user['createdOn']);
     $user['updatedOn'] = $timestamp->convert($user['updatedOn']);
 
-    $data = [
-        "status" => $status,
-        "data" => $user
-    ];
-
-    $response->getBody()->write(json_encode($data));
-    return $response->withStatus($status);
+    $response->getBody()->write(json_encode($user));
 });

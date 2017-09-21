@@ -8,16 +8,7 @@ $app->put('/users', function (Request $request, Response $response, $args) {
     // Autowiring the controller.
     $controller = $this->get('Monsoon\User\Controller\UpdateController');
 
-    // Default status code.
-    $status = 200;
-
     // Obtain result.
-    $data = $controller->updateUser($request);
-    $data = [
-        "status" => $status,
-        "data" => $data
-    ];
-
-    $response->getBody()->write(json_encode($data));
-    return $response->withStatus($status);
+    $result = $controller->updateUser($request);
+    $response->getBody()->write(json_encode($result));
 });
