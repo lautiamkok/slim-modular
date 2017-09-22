@@ -24,15 +24,13 @@ $app->add(function ($request, $response, $next) use ($container) {
 
         // Modify the PSR7 body from all routes.
         // https://akrabat.com/filtering-the-psr-7-body-in-middleware/
-        if ($status === 200) {
-            $content = $response->getBody();
-            $data = [
-                "status" => $status,
-                "data" => json_decode($content, true)
-            ];
-            $response->getBody()->rewind();
-            $response->getBody()->write(json_encode($data));
-        }
+        $content = $response->getBody();
+        $data = [
+            "status" => $status,
+            "data" => json_decode($content, true)
+        ];
+        $response->getBody()->rewind();
+        $response->getBody()->write(json_encode($data));
     } catch (\Exception $error) {
         $status = $error->getCode();
         $data = [
