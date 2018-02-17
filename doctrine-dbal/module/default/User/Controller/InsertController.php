@@ -49,7 +49,7 @@ class InsertController extends Controller
 
         // Generate a version 3 (name-based and hashed with MD5) UUID object.
         // https://github.com/ramsey/uuid
-        $uuid3 = Uuid::uuid3(Uuid::NAMESPACE_DNS, 'USER');
+        $uuid3 = Uuid::uuid3(Uuid::NAMESPACE_DNS, $name);
         $uuid = $uuid3->toString();
 
         $gateway = new InsertGateway($this->connection);
