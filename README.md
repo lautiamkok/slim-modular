@@ -2,7 +2,7 @@
 
 > Creating a modular Slim application.
 
-Read the post [here](https://www.codementor.io/lautiamkok/creating-a-modular-slim-application-gtj9fcxq0?published=1) about this repository.
+Read the post [here](https://www.codementor.io/lautiamkok/creating-a-modular-slim-application-gtj9fcxq0) about this repository.
 
 ## Quick Setup
 
