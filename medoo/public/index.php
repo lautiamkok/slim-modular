@@ -37,7 +37,7 @@ $container->delegate(
 $app = new \Slim\App($container);
 
 $app->get('/', function (Request $request, Response $response, $args) {
-    $response->getBody()->write("Hello world!");
+    $response->getBody()->write(json_encode("Hello world!"));
 
     // Below are now handled by the middleware.
     // $data = [
